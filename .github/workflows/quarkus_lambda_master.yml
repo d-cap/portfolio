@@ -1,0 +1,22 @@
+name: Deploy test lambda from master
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    uses: ./.github/workflows/quarkus_lambda_build.yml
+  
+  deploy-test:
+    needs: build
+    uses: ./.github/workflows/quarkus_lambda_deploy.yml
+    with:
+      env: test
+
+  deploy-prod:
+    needs: build
+    uses: ./.github/workflows/quarkus_lambda_deploy.yml
+    with:
+      env: prod
