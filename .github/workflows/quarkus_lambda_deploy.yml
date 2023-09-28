@@ -22,7 +22,24 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - uses: actions/download-artifact@v3
+      - name: Get lambda (compiled)
+        uses: actions/download-artifact@v3
         with:
           name: lambda
           path: ./target/
+
+      - name: Install node (18.x)
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Install dependencies
+        working-directory: ./quarkus-lambda/deploy
+        run: yarn install
+
+      - name: Deploy
+        working-directory: ./quarkus-lambda/deploy
+        run: |
+          pulumi up -y
+
+
