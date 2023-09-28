@@ -1,5 +1,12 @@
 name: Lambda deploy
 
+on:
+  workflow_call:
+    inputs:
+      env:
+        required: true
+        type: string
+
 jobs:
   build:
     name: Deploy lambda

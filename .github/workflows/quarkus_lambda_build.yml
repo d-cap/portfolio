@@ -1,9 +1,16 @@
 name: Java Build
 
+on:
+  workflow_call:
+
 jobs:
   build:
     name: Build with Java 17
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: quarkus_lambda
 
     steps:
       - name: Checkout
