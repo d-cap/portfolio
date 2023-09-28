@@ -32,7 +32,7 @@ jobs:
         run: mvn package -Pnative
 
       - name: Integration tests
-        run: mvn verity -Pnativ
+        run: mvn verify -Pnative
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
